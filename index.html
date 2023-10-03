@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags for character set and viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title and external stylesheet links -->
+    <title>Fakeout - Fake News Detector</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-GLhlTQ8iK4t5gx+pr/56IuwoAqXZwJdP5c4IHxpPT2ZFZlNTBQvq7EFe1TGnam5G" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- Header section with the main title -->
+    <header>
+        <h1>Fakeout - Fake News Detector</h1>
+    </header>
+
+    <!-- Main content container -->
+    <div class="container">
+        <!-- Section heading for news verification -->
+        <h2>Verify News Content</h2>
+
+        <!-- Description for users -->
+        <p>Enter the news content you want to verify for authenticity using Fakeout.</p>
+
+        <!-- Text area for entering news content -->
+        <label for="newsInput">News Content:</label>
+        <textarea id="newsInput" placeholder="Paste the news content here..."></textarea>
+
+        <!-- Button for detecting fake news -->
+        <button onclick="detectFakeNews()">Detect Fake News</button>
+
+        <!-- Button for clearing the chat -->
+        <button onclick="clearChat()" class="clear-chat" title="Clear Chat">
+            <i class="fas fa-trash"></i> Clear Chat
+        </button>
+
+        <!-- Button for regenerating content -->
+        <button onclick="regenerateContent()" class="regenerate-content" title="Regenerate Content">
+            Regenerate <i class="fas fa-sync-alt"></i>
+        </button>
+
+        <!-- Processing indicator section -->
+        <div id="processing-indicator">
+            <p>Processing...</p>
+        </div>
+
+        <!-- Response container -->
+        <div id="response">
+            <!-- Display the response from Fakeout here -->
+        </div>
+
+        <!-- User feedback section -->
+        <div id="user-feedback">
+            <p>Was this helpful?</p>
+            <button onclick="provideFeedback(true)">Yes</button>
+            <button onclick="provideFeedback(false)">No</button>
+        </div>
+    </div>
+
+    <!-- JavaScript file inclusion -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
