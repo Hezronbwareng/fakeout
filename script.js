@@ -107,13 +107,16 @@ function provideFeedback(isHelpful) {
 
 function showProcessingIndicator() {
     const processingIndicator = document.getElementById('processing-indicator');
+    processingIndicator.innerHTML = '<p>Loading...</p>'; // Display a loading message
     processingIndicator.style.display = 'block';
 }
 
 function hideProcessingIndicator() {
     const processingIndicator = document.getElementById('processing-indicator');
     processingIndicator.style.display = 'none';
+    processingIndicator.innerHTML = '';
 }
+
 
 function fetchDataFromApi() {
     const apiUrl = 'https://barasa.pythonanywhere.com/predict';
