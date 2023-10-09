@@ -8,7 +8,7 @@ function detectFakeNews() {
 
     showProcessingIndicator();
 
-    const apiUrl = 'https://barasa.pythonanywhere.com/predict'; // Replace with your actual API endpoint
+    const apiUrl = 'https://barasa.pythonanywhere.com/predict'; 
 
     fetch(apiUrl, {
         method: 'POST',
@@ -44,8 +44,6 @@ function processApiResponse(data) {
         // Create elements to display the response
         const resultParagraph = document.createElement('p');
         resultParagraph.textContent = `Result: ${data.result}`;
-
-        // Add more elements based on your API response structure
 
         // Append elements to the container
         responseContainer.appendChild(resultParagraph);
@@ -127,10 +125,10 @@ function fetchDataFromApi() {
     };
 
     fetch(apiUrl, {
-        method: 'POST', // Change this to the correct HTTP method
+        method: 'POST', //  HTTP method
         headers: {
             'Content-Type': 'application/json',
-            // Add any other headers as needed
+            // any other headers 
         },
         body: JSON.stringify(requestData),
     })
@@ -152,7 +150,6 @@ function fetchDataFromApi() {
 
 function processApiResponse(data) {
     // Handle the API response data
-    // For example, update the UI with the response
     document.getElementById('response-container').innerText = JSON.stringify(data);
 }
 
