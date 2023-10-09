@@ -33,11 +33,26 @@ function detectFakeNews() {
         showNotification('Error detecting fake news. Please try again later.', 'error');
     });
 }
-
 function processApiResponse(data) {
     // Handle the API response data
-    // For example, update the UI with the response
-    document.getElementById('response-container').innerText = JSON.stringify(data);
+    const responseContainer = document.getElementById('response-container');
+
+    // Clear previous content
+    responseContainer.innerHTML = '';
+
+    if (data && data.result) {
+        // Create elements to display the response
+        const resultParagraph = document.createElement('p');
+        resultParagraph.textContent = `Result: ${data.result}`;
+
+        // Add more elements based on your API response structure
+
+        // Append elements to the container
+        responseContainer.appendChild(resultParagraph);
+    } else {
+        // Handle the case where the API response structure is unexpected
+        responseContainer.innerHTML = '<p>Error: Unexpected API response format</p>';
+    }
 }
 
 
@@ -47,38 +62,25 @@ function clearChat() {
 }
 
 function regenerateContent() {
-    const randomNews = generateRandomNews();
-    document.getElementById('newsInput').value = randomNews;
-    document.getElementById('response-container').innerHTML = '';
+    // Add logic to fetch content from your API
+    const apiUrl = 'https://barasa.pythonanywhere.com/predict';
+
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Update the newsInput with the fetched content
+            document.getElementById('newsInput').value = data.content;
+        })
+        .catch(error => {
+            console.error('Fetch error:', error.message);
+            // Handle errors, show a notification, etc.
+        });
 }
-
-function generateRandomNews() {
-    const randomHeadline = getRandomElement(headlines);
-    const randomBody = getRandomElement(bodyTexts);
-    return `${randomHeadline}\n\n${randomBody}`;
-}
-
-function getRandomElement(array) {
-    const randomIndex = Math.floor(Math.random() * array.length);
-    return array[randomIndex];
-}
-
-// Example headlines and body texts for regeneration
-const headlines = [
-    "Breaking News: Scientists Make Remarkable Discovery",
-    "Political Scandal Unveiled: Shocking Revelations",
-    "New Technology Promises to Change the World",
-    "Entertainment News: A-list Celebrity Wedding",
-    "Health Tips: Stay Fit and Healthy with These Habits"
-];
-
-const bodyTexts = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    "In a surprising turn of events, authorities have revealed...",
-    "The latest breakthrough in technology has left experts amazed...",
-    "Amidst the glitz and glamour, the star-studded wedding took place...",
-    "Taking care of your health is essential for a happy and fulfilling life..."
-];
 
 
 function showNotification(message, type) {
@@ -91,7 +93,7 @@ function showNotification(message, type) {
     // Automatically remove the notification after a few seconds
     setTimeout(() => {
         document.body.removeChild(notification);
-    }, 2000);
+    }, 2500);
 }
 
 function provideFeedback(isHelpful) {
@@ -151,12 +153,10 @@ function processApiResponse(data) {
     document.getElementById('response-container').innerText = JSON.stringify(data);
 }
 
-// Add this function to your existing script.js
+
 function adjustTextareaHeight() {
     const textarea = document.getElementById('newsInput');
     textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
 }
-
-// Add this event listener to your existing script.js
 document.getElementById('newsInput').addEventListener('input', adjustTextareaHeight);
