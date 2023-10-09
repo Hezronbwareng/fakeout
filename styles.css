@@ -160,3 +160,27 @@ button.regenerate-content {
     background-color: #3498db;
     color: #fff;
 }
+
+#response-container {
+    margin-top: 20px;
+}
+
+.user-bubble {
+    background-color: #3498db; /* User's bubble color */
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    max-width: 70%;
+    align-self: flex-end;
+}
+
+.api-bubble {
+    background-color: #f2f2f2; /* API's bubble color */
+    color: #333;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    max-width: 70%;
+    align-self: flex-start;
+}
